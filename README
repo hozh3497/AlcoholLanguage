@@ -1,0 +1,799 @@
+
+
+
+
+                     _/_/_/_/         _/_/         _/_/_/_/
+                    _/      _/       _/ _/        _/      _/
+                   _/      _/       _/  _/       _/
+                  _/      _/       _/   _/       _/
+                 _/_/_/_/         _/_/_/_/        _/_/_/
+                _/      _/       _/     _/             _/
+               _/      _/       _/      _/             _/
+              _/      _/       _/       _/    _/      _/
+             _/_/_/_/         _/        _/     _/_/_/_/
+
+
+                   BAVARIAN ARCHIVE FOR SPEECH SIGNALS 
+
+               University of Munich, Institute of Phonetics
+               Schellingstr. 3/II, 80799 Munich, Germany
+                      bas@bas.uni-muenchen.de
+
+
+      COPYRIGHT University of Munich 2008-2011. All rights reserved.   
+    This corpus and software may not be disseminated further - not even
+      partly - without a written permission of the copyright holders.  
+
+
+----------------------------------------------------------------------
+
+
+ALC  -  Alcohol Language Corpus 2.6
+
+
+------------------- Contents of this dir ------------------------------
+
+README          : this file
+COPYRIGHT       : copyright statement
+PAPERS/         : publications about ALC and related projects
+PARDOC/		: copy of the BAS Partitur File definition 
+                  (HTML: start with "BasFormatseng.html")
+DATASHEETS/     : datasheets of microphones and recording hardware
+PICTURES/       : pictures of recording situation, icons, logos etc.
+SPEECHRECORDER/ : recording scripts
+IS2011CHALLENGE/: mapping lists and documentation for the Interspeech 
+		  2011 Speaker State Challenge ALC; results summary
+
+------------------- Content of this file ------------------------------
+
+   General information
+   DVD directory structure and session naming
+   Naming conventions
+   Signals and acoustical environment
+   Contents
+   Outline of recording session
+   Meta data: speaker and recording
+   Annotation and segmentation files contained in this edition
+   EMU data base
+   Interspeech 2011 Speaker State Challenge
+   General known errors across all recordings
+   History
+
+------------------------ General Information --------------------------
+
+ALC contains recordings of speakers that are either intoxicated or sober.
+The type of speech ranges from read single digits to full conversation style.
+Recordings were done during drinking test where speakers drank beer or
+wine to reach a self-chosen level of alcoholic intoxication. The actual
+level of intoxication was measured by breath alcohol and blood samples
+taken immediately before the speech recording. Recordings were performed
+in two standing automobiles to ensure a constant acoustic environment
+across the different recording locations; both, the intoxicated and sober
+condition recording were done in the same car and supervised by the same
+investigator (dialogue partner). In the intoxicated state 30 items were 
+sampled from each speaker (set A), while in the sober state 60 items were 
+recorded (set NA; set A being a subset of set NA).
+
+The corpus consists of 162 double sessions (alcoholized 'A' and sober 'NA')
+recorded from 85 male and 77 female speakers. 84 speakers were 
+recorded in car B (Opel), 78 in car A (Passat). The age of speakers 
+ranges from 21 to 64 years. If one version is selected per recording item,
+the total number of regular recordings is therefore 162 x (30+60) = 14.580 
+(found in DATA/BLOCK10...40). 
+
+(Note that you will find 636 additional recordings containing second (or
+third etc.) versions of the same recording. To filter these select only
+those recordings which have an 'null' entry in header field 'ACO' in the
+corresponding BAS Partitur Format (BPF) file (*.par). Or simply use only 
+file names which are listed in TABLES/CONTENTS.TBL (note that this file
+also contains the control recordings of 20 speaker in block 50 and 60).
+Or simply use the
+Emu database which contains only one valid version per recording item.
+The total number of valid recordings is:
+regular pairwise recordings:  162 speaker x (30 + 60) items +
+control group                  20 speaker x 30 items             = 15180
+Note that the CLARIN online edition of ALC contains only the files as
+defined in the Emau database.
+
+To test for unknown factors a group of 20 speakers have been selected 
+randomly from the 162 (10 female + 10 male, 10 in car A and 10 in car B)
+to repeat the test under the exact same conditions as the alcoholized
+test (30 recordings) but being sober (control group 'CNA'). This results 
+in additional 20 x 30 = 600 recordings (found in DATA/BLOCK50...60).
+
+Furthermore 7 speakers were recorded only in the intoxicated state. These
+7 x 30 = 210 recordings may be used as additional test material (found
+in PARTIAL). For technical reasons the recording meta data of these
+additional 7 recordings have been listed in a separate table 
+TABLE/SESSEXT.TBL.PARTIAL (see section about meta data).
+
+All of the above recordings (including second versions, control group
+and PARTIAL group) have been transcribed orthographically,
+tagged for linguistic events and segmented automatically using the 
+MAUS system. For each recording with more than one version (repetitions)
+one valid recording version was chosen by the annotator and marked 
+accordingly. Only these selected versions were transfered in the Emu 
+database system.
+
+Please also refer to the paper:
+
+Schiel F, Heinrich Chr, Barfuesser S (2011): Alcohol Language Corpus.
+Language Resources and Evaluation, Springer, Berlin, New York, in print.
+(copy in DOC/PAPERS/LRE2011.PDF)
+
+for a more detailed description of the ALC corpus.
+
+------------------ DVD directory structure and session naming ---------
+
+Each ALC DVD contains the following in the top root dir:
+
+README                                  : version and copyright information
+DATA                                    : signal and annotation data
+   |
+   |
+   |--BLOCK[1-6][01]                    : recording blocks: 1 : set A,   Opel
+   |  |                                                     2 : set NA,  Opel
+   |  |                                                     3 : set A,   Passat
+   |  |                                                     4 : set NA,  Passat
+   |  |                                                     5 : set CNA, Opel
+   |  |                                                     6 : set CNA, Passat
+   |  |--SES####                        : recording session ####:
+   |     |  ...                           first two digits = block number
+   |     |                                last two digits = session within block
+   |     |--&&&####$$$_[h|m]_VV.[wav|par|TextGrid]
+   |     |  ...                         : single recording $$$ of speaker &&&
+   |                                      h  : headset channel, m : mouse micro
+   |                                      VV : version starting with '00'
+   |--PARTIAL                           : annotated alcoholized sessions, but
+   |  |                                   no sober recording available
+   |  |                                   (could be used as additional test)
+   |  |
+   |  |--SES####                          for sessions ####
+   |
+   |--NOTUSED                           : recordings that have not been
+      |                                   annotated because being corrupt
+      |--SES#### 
+
+DOC                                     : documentation
+   |
+   |--README                            : this file
+   |--PAPERS                            : publications to ALC
+   |--PARDOC                            : documentation of BPF
+   |                                      (start with BasFormatseng.html)
+   |--SPEECHRECORDER                    : XML recording scripts
+   |--DATASHEETS                        : hardware data sheets
+   |--PICTURES                          : pictures of recording set, prompts
+   |--IS2011CHALLENGE                   : original docu and mapping files for
+                                          the Interspeech 2011 Challenge
+
+TABLE                                   : meta data
+   |
+   |--SPEAEXT.TBL                       : speaker table, extended SpeechDat 
+   |--SESSEXT.TBL                       : recording table, extended SpeechDat
+   |--SESSEXT.TBL.PARTIAL               : recording table of PARTIAL recordings
+   |--LEXICON.TBL                       : pronunciation lexicon
+   |--PROMPTS_[A|NA].TBL                : prompt list of set A and NA
+   |--ITEMMAP.TBL                       : mapping set A/CNA to set NA
+   |--CONTENTS.TBL                      : listing of valid soundfiles (to filter
+                                          multiple versions; matches EMU database)
+					  contains 162 spk x 90 items + 20 spk x 30 items
+
+EMU                                     : EMU data base (only volume 1)
+   |
+   |--ALC.TPL                           : legacy Emu data base template
+   |--LAB                               : legacy Emu data base label files
+   |     |                                (headset channel only!)
+   |     |--BLOCK..
+   |           |
+   |           |--SES####
+   |                 |
+   |                 |--&&&####$$$_h_VV.PHONETIC|HLB
+   |
+   |--ALC_emuDB                         : emuDB (same data as legacy) 
+         |                                (headset channel only without tracks)
+         |--ALC_DBconfig.json           : emuDB config file
+         |--BLOCK_SES####_ses           : session ####
+               |
+               |--&&&####$$$_h_VV_bndl  : bundle
+
+
+
+------------------------- naming conventions --------------------
+
+Speaker are anonymized and referred to via the speaker ID &&& (3 digit number).
+Speaker IDs in the range 000 - 499 have been recorded in automobil CAR_B, 
+while IDs in the range 500 - 999 have been recorded in automobil CAR_A.
+Recording items $$$ are referred to by 3 digit numbers as given in the 
+prompt lists PROMPTS_A.TBL and PROMPTS_NA.TBL; the original XML scripts
+that control the recording via SpeechRecorder are stored in
+DOC/SPEECHRECORDER.
+Recording items (sound file, annotation files) contain the speaker ID, the 
+session number, the item number and the recording channel. Insofar the
+hierarchy as being used on the DVD is not essential to identify a
+recording and may be flattened if necessary.
+
+Example:
+
+DATA/BLOCK40/SES4004/5084004005_m_01.par : 
+                   extension 'par' : BPF annotation file 
+                   speaker '508'   : recorded in CAR_A
+                   session '4004'  : sober condition in CAR_A
+                   prompt '005'    : "Erzählen Sie eine Geschichte zum Bild"
+                                     (according to PROMPTS_NA.TBL)
+                   channel         : 'm' mouse micro
+                   version         : '01' : first repetition
+
+Note that the Emu version of the corpus does not contain repetitions; 
+for each recording one version was selected for the final corpus. In the 
+base corpus repetitions (including annotation files) are included but 
+classified by a special annotator comment: 
+To achieve a set of recordings without multiple versions the set 
+has to be filtered according to the BPF entry ACO (annotator comment):
+If the annotator comment contains one of the strings 'false', 
+'false 2nd' or 'spont', the recording does not not contain the 
+prompted speech or a duplicate version. Filtering these recordings
+should result in a set where each recordings occurs only once.
+
+Extensions used in this corpus:
+
+wav      : mono soundfile WAVE RIFF 44100Hz, 16bit
+par      : BAS Partitur Format file (plain ASCII, see DOC/PARDOC)
+txt      : text file Iso8859-1 or plain ASCII
+tbl      : meta data or annotation table, Iso8859-1 or plain ASCII
+hlb      : Emu database hierarchical information file (plain ASCII)
+phonetic : Emu database MAUS segmentation (plain ASCII)
+tpl      : Emu database template file (one for total database)
+TextGrid : praat annotation file with word and MAUS segmentation 
+           (Iso8859-1 or plain ASCII)
+pdf      : Adobe portable document format
+
+
+------------------------ signals and acoustics -------------------------
+
+The speech signal is captured by SpeechRecorder
+(http://www.phonetik.uni-muenchen.de/forschung/Bas/software/speechrecorder/)
+with 16bit per sample and 44100Hz sampling rate PCM.  Sampling device is
+M-AUDIO Mobile Pre (see datasheet 060628_MPre_UG_EN01.pdf); the headset
+channel is captured by Beyerdynamics Opus 54 (see datasheet
+Opus54_DB_E.pdf) located approx. 5cm left from the left corner of the
+mouth slightly elevated above the mouth. The far distance channel is
+captured by a standard 'mouse microphone' AKG Q400 (see
+AKG_Datenb4120c686c18e9.pdf) as being used in automotive
+speech capture, located in the middle of the upper front beam (near
+backview mirror, see DOC/PICTURES). The distance to mouth is about 30 to
+40cm (depending on the height of the speaker).
+
+Speaker are positioned in the front passenger seat. Motor is being switched
+off, except for prompt numbers 021-030 (sets A,CNA) and 041-060 (set NA)
+where engine idles but the car does not move.  Windows are closed and all
+devices except air condition are being switched off. The used automobile for
+both recordings of a speaker are denoted CAR_A and CAR_B in the session
+list TABLE/SESEXT.TBL (column 'ENV').  CAR_A is a Volkswagen Passat
+Variant Diesel 134PS 2004 (large interior acoustical space); CAR_B is an 
+Opel Astra (GM) Astra Coupe 22 AUT 2001 (small interior acoustical space).  
+The acoustical environment for both, the sober and non-sober
+condition is exactly the same (including dialog partner). External noise
+may be found in the recordings when the engine idles (street noise).
+In some recordings the noise of raindrops is audible; these recordings
+are marked in the session list TABLE/SESEXT.TBL with 'RAIN' in column
+'WEA'. Speaker were asked to switch off their cellular phones before
+recordings; however, there might be interferences with GSM signals
+caused by pedestrians nearby.
+
+The Beyerdynamic headset (channel ..._h_...) is connected directly to
+the phantom powered symmetrical input of the MAUDIO Mobil Pre; the AKG
+mouse microphone via a 0dB battery powered amplifier by Bruel&Kjaer 
+which only provided the necessary phantom power of 8 V. The output of
+this amplifier is asymmetrical and connected to the standard line-in 
+asymmetrical input of the MAUDIO device.
+
+--------------------- outline of recording session ----------------------
+
+First each participant is asked which blood alcohol level he/she
+wishes to reach in this experiment. The allowed range is up to 0.15%. 
+According to gender, age and weight the necessary amount of alcohol 
+is estimated using Widmore and Watson formula and handed to the
+participant.
+After consuming the alcohol the participant waits for a minimum of 20
+and up to 40min to avoid misleading measurements in breath alcohol.
+Then a breath alcohol test (BRAC) and a blood sample (BAC) is taken from
+the participant. If the breath alcohol shows values above 0.05% the 
+participant is eligible for for the speech test.
+Speakers are then immediately transfered to one of the recording
+automobiles and undertake a 15 min speech test as described below (section
+'Contents')(set 'A', blocks 10 and 30).
+At least one week later the speaker is recorded again in the same
+automobile and with the same dialogue partner (set 'NA', blocks 20 and
+40).
+If the speaker is randomly selected to be a control speaker, she/he is
+invited for another ecording session at least one week later and is 
+recorded again under the exact same conditions as the first test 
+(set 'CNA', block 50 and 60).
+In all sessions speakers are told about the purpose of the recordings
+beforehand and they are asked to speak naturally and clearly. The speakers
+control the start and end of each recording by pressing the space bar on 
+a laptop. Recordings that fail because of technical errors may be repeated
+(version counter increased by each repetition). Repetitions are not allowed 
+when the speaker merely made a reading mistake etc. 
+
+---------------------------- Contents ----------------------------------
+
+Each speech recording is prompted on screen by a short instruction 
+(e.g. 'Read the following sentence') followed by the item to be read 
+which appears when the speaker presses the recording button. 
+See the XML scripts in SPEECHRECORDER for a detailed list of prompts.
+A text summary can be found in the corresponding txt file as well as
+in tables /TABLE/PROMPTS_A.TBL and /TABLE/PROMPTS_NA.TBL respectively.
+
+A recording under intoxication (set A,CNA) contains the following speech 
+items:
+3 monologues
+2 dialogues
+5 numbers
+9 command&control (4 read, 5 spontaneous)
+6 addresses (1 spelled)
+5 tongue twisters
+Total: 30
+
+A recording under sober conditions (set NA) contains the following speech 
+items:
+5 monologues
+5 dialogues
+10 numbers
+19 command&control (9 read, 10 spontaneous)
+11 addresses (1 spelled)
+10 tongue twisters
+Total: 60
+
+Set A is a subset of NA (except for one address, item number A 004). 
+Prompts pointing to a picture contain the 
+filename of the displayed picture as the last item in the prompt text.
+Please refer to the directory PICTURES for copies of the displayed 
+pictures.
+
+Since the speakers were in some cases allowed to repeat the recording,
+there exist 636 recordings with more than one version (numbered by the 
+last two digits in the file name); silent interval recordings were
+deleted. All versions have been annotated as described below.
+
+To achieve a set of recordings without multiple versions the set 
+has to be filtered according to the BPF entry ACO (annotator comment):
+If the annotator comment contains one of the strings 'false', 
+'false 2nd' or 'spont', the recording does not not contain the 
+prompted speech or a duplicate version. Filtering these recordings
+should result in a set where each recordings occurs only once.
+(See section 'Annotation' for details about these comments.)
+
+WARNING: Item identifiers of the sets A/CNA and NA do not match, 
+because we did not want the same order of recordings! Therefore
+the identical prompt can have different identifiers in the two sets.
+Refer to tabel ITEMMAP.TBL for a mapping of set A/CNA to set NA.
+
+-------------------------- Lexicon -------------------------------------
+
+The file LEXICON.TBL contains a complete pronunciation lexicon
+of the ALC corpus.
+The first column contains the orthographic transcript as being used 
+in the BPF tier ORT (that is, stripped by any linguistic markers), 
+German Umlauts are coded in LaTeX (see above).
+The second column contains the canonical pronunciation (citation form)
+of the word/word fragment/non-word obtained from the BALLOON tool 
+of Uwe Reichel coded in extended German SAMPA; in this alphabet the 
+glottal stop is being encoded as /Q/ instead of /?/ as in the original
+German SAM-PA set defined by J. Wells (see table SMAP.TBL for complete
+list).
+The pronunciation coding was done automatically using the BALLOON system
+and then corrected manually by experienced phoneticians according to the 
+BAS standard for German pronunciation coding given in: 
+
+http://www.bas.uni-muenchen.de/Bas/Bas/BasGermanPronunciation/
+
+Please note that this lexicon contains plenty of non-words stemming 
+from mispronunciations, word breaks etc. These can be identified by the
+fact that they do not carry a lexical accent marker (').
+
+-------------------------- Meta Data -----------------------------------
+
+Meta data of speakers and recording sessions are stored in the tables
+/TABLE/SPEAEXT.TBL and /TABLE/SESSEXT.TBL respectively. These tables
+conform with the SpeechDat database specifications but have been
+extended by extra columns.
+
+The following meta data are stored for each speaker in SPEAEXT.TBL (one
+speaker per line; TAB seperated columns):
+SCD : speaker ID
+SEX : gender M/F
+AGE : age
+ACC : German state of elementary school (to judge dialectal background)
+      (see PICTURES/GermanyMap.gif GermanyTable.gif)
+      Code | Federal state
+      ------------------------------
+       BB  | Brandenburg
+       BE  | Berlin
+       BW  | Baden-W374rttemberg
+       BY  | Bayern
+       HB  | Bremen
+       HE  | Hessen
+       HH  | Hamburg
+       MV  | Mecklenburg-Vorpommern
+       NI  | Niedersachsen
+       NW  | Nordrhein-Westfalen
+       RP  | Rheinland-Pfalz
+       SH  | Schleswig-Holstein
+       SL  | Saarland
+       SN  | Sachsen
+       ST  | Sachsen-Anhalt
+       TH  | Th374ringen
+       AT  | Austria
+       CH  | Switzerland
+       XX  | OTHER/UNKNOWN
+      ------------------------------      
+WEI : height (cm)
+HEI : weight (kg)
+EDU : educational level (school exam)
+PRO : profession
+SMO : smoker Y/N
+DRH : drinking habits: light, moderate, heavy
+COM : additional comments on speaker
+
+The following meta data are stored for each recording session in 
+SESSEXT.TBL (one recording per line; TAB seperated columns):
+
+SES : session ID
+RED : recording date YYY/MM/DD
+RET : recording time HH:mm
+SCD : speaker ID
+AGE : age
+SEX : gender M/F
+ACC : German state of elementary school (to judge dialectal background)
+REG : (only for compatibly reasons)
+ENV : CAR_A or CAR_B
+AAK : blood alcohol concentration estimated by breath in absolut proportion (0.01 = 1%)
+BAK : blood alcohol measure
+GES : general condition of speaker f1 ... f10
+CES : condition of speaker during the test r1 ... r4
+WEA : weather condition during test: SUN, RAIN
+
+GES and CES:
+Before both tests speakers are asked to judge their general disposition
+for this day in 10 categories:
+f1 happy
+f2 stressed out
+f3 aggressive
+f4 sad
+f5 relaxed
+f6 tired
+f7 depressive
+f8 desperate
+f9 rested
+f10 frolicsome
+After the test speakers are asked to judge their disposition during the
+test in 4 categories:
+r1 relaxed
+r2 bored
+r3 exited
+r4 nervous
+
+DRH:
+The drinking habits of the speaker are determined as follows:
+During the interview the speaker is asked two questions:
+1. How often do you consume alcohol in average:
+   daily, more than once a week, once a week, less than once a week
+2. If you consume alcohol, how much is the amount in one session:
+   either number of beers (0,5l each) or number of glass wine (0,2l each)
+From these answers two binary factors are drawn:
+Amount: sparsely (1-2 units beer or wine), plenty (more than 2 units)
+Frequency: seldom (once or less than once a week), often (more than 
+once a week or daily)
+These factors are then combined into the final three categories:
+light = sparsely AND seldom
+moderate = ( sparsely AND often ) OR ( plenty AND seldom )
+heavy = often AND plenty
+
+--------------------- Annotation ----------------- ------------------
+
+Orthographic transcripts and phonemic segmentation are stored in 
+BAS Partitur Format (BPF) files with the same name as the signal files
+but extension '*.par'.
+Cloned versions of the segmentation are also stored in praat TextGrid
+files (extension *.TextGrid) and in legacy Emu hierarchical database files 
+stored in EMU/LAB (Emu template in /EMU/ALC.TPL) and in emuDB *_annot.json 
+files in EMU/ALC_emuDB (both only on volume 1)
+Note that only recordings containing speech have been annotated and 
+therefore have annotations files.
+
+BPF
+The BAS Partitur Format is a simple but effective way to represent
+symbolic (discrete) labels (categories together with their time
+information) aligned to a physical signal. 
+
+The main (and up-to-date) documentation can be found in
+www.bas.uni-muenchen.de/Bas/BasFormatseng.html
+(a copy of this page at the time of distribution can be found
+in PARDOC/BasFormatseng.html).
+
+The BPF files of ALC contain the following standard tiers:
+ORT : orthographic transcript without additional markers;
+      words transcribed as in LEXICON.TBL; hesitations; word fragments
+      without marker; articulatory noise as '#GARBAGE#'
+TRN : manual utterance segmentation together with full transcript
+      (see transcript conventions below)
+      To access linguistic and para-linguistic markers you have to 
+      analyse this tier.
+KAN : canonical pronunciation in extended German SAM-PA as described in 
+      /TABLE/SAMPA.TBL; pronuciations derived from LEXICON.TBL. 
+MAU : automatic phonemic segmentation (produced by MAUS)
+      (see http://www.bas.uni-muenchen.de/forschung/Verbmobil/VM14.7eng.html) 
+
+Transcript Conventions
+Only the headset channel was transcribed; therefore all BPF files 
+(and TextGrid, EMU files) in ALC are of channel '..._h_...'.
+The orthographic transcript (as given in the TRN tier) follows the 
+SpeechDat convention extended by some necessary additional markers 
+as used in the Verbmobil transliterations:
+
+Only proper names and nouns are transcribed with initial capital
+letters; punctuation are omitted; no other non-ASCII-7 characters than 
+'äüöÄÜÖß' are allowed (that is for instance French accents are ignored),
+these are coded in LaTeX to achieve true 7-bit-ASCCI encoding:
+ä : "a
+ü : "u
+ö : "o
+Ä : "A
+Ü : "U
+Ö : "O
+ß : "s
+
+Spelling : capital single letters (a phoneme that is not spelled is 
+	transcribed as single small letter, e.g. '+/#k/+ Tupfenkopftuch'
+
+Mispronunciation/break : leading '#' followed by a close transcript of
+	what was spoken (this is usually not a valid German word!)
+	'#' will also be used in words that deviate from the prompt
+	text but form a valid (other word). '#' will not be used for 
+	inserted words.
+	Examples:
+	'#Tupfentopftuch' (instead of 'Tupfenkopftuch')
+	'#Kupferkoch' (instead of 'Kupferkochtopf', word interupt)
+	'M A #T K T G R A I T Z' (instead of 'M A R K T G R A I T Z')
+	'-/#k/- Tupfenkopftuch' (word interupt together with repair)
+        
+Dialectal variant: marked by a leading '*' followed by the correct form
+        e.g. 'hamma' is transcribed as '*haben *wir'
+             ''nem' ist transcribed as '*einem'
+
+Unintelligible word: '**'
+
+Stutter/repeat : repeat of one or more words
+        e.g. 'ich wollte +/das/+ +/das/+ das Mikro nehmen'
+             '+/ich wollte/+ ich wollte das Mikro nehmen'
+
+False start/repair : speaker breaks and starts again or repairs
+        e.g. 'ich -/wollte #eigen/- <hm> bin schon fast am Ende'
+             '-/ich wollte/- ich sollte das Mikro nehmen'
+
+Hesitations: '<"ah>' (voiced), '<hm>' (nasal), '<"ahm>' (voiced-nasal),
+        '<hes>' others
+
+Noises : '[sta]' stationary noise (only at begin of transcript)
+        '[int]' transient noise at the location between words
+        (overlapping noise is ignored, as well as crosstalk)
+        '[spk]' speaker noise (cough, laugh etc.) 
+
+Lengthening : lengthened grapheme followed by '<Z>'
+        e.g. 'wei<Z>"s nicht' 
+
+Pauses : short pause '<P>' (<1sec), long pause '<PP>' (>1sec)
+        (initial and final pauses are not labeled)
+
+Word interrupt : '..._ _..., 
+        e.g. 'ver_<"ah>_storben'
+
+Irregularities : the number of audible irregularities # are coded in the
+	transcript initial tag '[v#]'
+	irregularities were counted for a subset of ALC only:
+	tongue twisters, read car commands, monologues, dialogues.
+	Items 002,003,005,007,010,012,014,016,018,020,021,023,024,029 in set A 
+	Items 002,003,005,007,010,012,014,016,018,020,022,023,025,027,
+	030,032,034,036,038,040,041,044,050,051,052,056,057,058,059   in set NA.
+	All other items have the number # = 9999.
+	This number is also stored in the BPF header under the key 'STT'.
+	Irregularities are defines as:
+	- word deletion/insertion/replacement/switch
+	- phone/phone-cluster deletion/insertion/replacement/switch
+        - stutter
+	- repair
+	- word break (if not within a repair)
+	- long pauses
+
+Aside from the transcript the annotator judged the level of intoxication
+individually for each recording into 3 categories: normal (1), light (2) 
+and heavy (3). This value is also given in BPF header under the key
+'AAL'.
+
+A free comment could be added to each transcript by the annotator; the
+comment is stored in the BPF header under the key 'ACO':
+Recordings that contain completely other speech than required by the 
+prompt were marked with the string 'false' in the annotator comment.
+(Care has been taken during recording that there exist always at least
+one version with the required prompt text!)
+Identical second recordings (versions) are marked with the string 
+'false second'.
+Recordings that contain spontaneous speech instead of the
+prompted speech are marked with the string 'spont', e.g. 
+'achso das habe ich ja schon gesagt'
+Recordings that contain the prompted text and some additional speech
+are not marked but the added speech is contained in the transcript, 
+e.g. 'Hermenegildisstrasse oh gott oh gott'.
+
+As mentioned earlier, filtering the total set of annotations for 
+annotator comments 'false, 'false 2nd' and 'spont' should result 
+in a set where each recording occurs exactly once and this recording 
+must contain the prompted text.
+This filtering has for instance been applied to the Emu database
+(see next section).
+
+To summarize:
+To achieve a set of exactly 30+60 recordings per speaker
+- use only recordings where a BPF *.par or a *.TextGrid file exists,
+- from these discard all multiple versions that carry the entries
+  ACO: false
+  ACO: false 2nd
+  ACO: spont
+  in the BPF file header (*.par).
+or use the pre-filtered amuDB set stored in /EMU/ALC_emuDB on volume 1.
+
+------------------- EMU database (only on volume 1) ---------------------
+
+Emu is an open-source database tool for speech corpora (see
+http://emu.sourceforge.net). The subdir /EMU contains a legacy Emu template
+file for the ALC corpus as well as a legary Emu database label files in 
+/EMU/LAB. A more current emuDB version can be found in /EMU/ALC_emuDB.
+Both Emu databases contain only one recording version and one
+label file (see remarks about annotator comments in the previous section).
+
+To use the legacy Emu DB you will have to perform the following steps:
+(But please note that legacy Emu is no longer supported and you will 
+probably not succeed installing the system on your machine; better
+use the new emuR version; see below)
+- install Emu on your system (http://emu.sourceforge.net)
+- place the template file /EMU/ALC.TPL into a dir where your Emu 
+  installation stores template files (you can add another such dir by using 
+  the Emu options File / emu-conf Editor) -> The name 'ALC' should appear
+  in the left databases windows of Emu
+- Open the template by marking 'ALC' and select the Emu option 
+  Template Operations / Edit template
+- In the template editor window go to tab 'Levels' and modify the 
+  entry 'Path for hlb files' according to the location where you have 
+  stored the /EMU/LAB hierarchy on your system
+- Go to tab 'Labfiles' and modify the path entry of type 'SEGMENT'
+  accordingly.
+- Go to tab 'Tracks' and modify the path entry of track 'samples'
+  to the location where you have stored the ALC corpus on your system.
+- Save the changes in your template file
+- Double click on 'ALC' in your databases windows of Emu
+  -> Emu now searches for signal and Emu label files and displays a list
+  of found signal files in the right 'Utterances' window of Emu; this 
+  may take some time depending on your system.
+  You will see a list of '.._h_..' and '..._m_..' file specifiers; only 
+  headset channel '..._h_...) wil have a proper Emu hierarchy and 
+  segmentation file.
+- Double click on one '.._h_..' entry and you will see the Emu editor
+  window displaying the signal, the spectrogram and the phonemic 
+  segmentation.
+- Click on 'Show Hierarchy' and you will see the label structure of 
+  this recording.
+
+To use the newer emuDB version do the following:
+- install R language on your machine
+- start R and install the R package 'emuR' fom CRAN (install.packages())
+- Load emuR package: library(emuR)
+- Copy the dir EMU/ALC_emuDB to some location <AlcEmuDir> on your 
+machine
+- Load the emuR DB in R: alc = load_emuDB("<AlcEmuDir>/ALC_emuDB")
+- get familliar with the emuR package: vignettes("emuDB_intro") 
+
+Emu Hierarchy of ALC
+
+The top level 'utterance' (value is the file name without extension)
+contains the total recording exclusive the 
+initial and final silence interval. Attached to this level is a number
+of 'labels' (Emu terminology) that contain useful meta information 
+about this recording. The labels, their meaning and possible values are:
+
+spn        : speaker ID 001 - 999
+utt        : utterance ID = signalfile name without '_h_00'
+o_utt      : utterance of corresponding item in other set (A o. NA) or 'null'
+item       : item number 001 - 060
+o_item     : item number in corresponding other set (A o. NA) or 'null'
+alc        : ialcoholisation a = set A | na = set NA
+sex        : F|M
+age        : 22 - 75
+acc        : state code of primary school e.g. BY
+drh        : drinking habits = light | moderate | heavy
+aak        : breath alcohol concentration as float, e.g. 0.001 = 0.1% or '???'
+bak        : blood alcohol concentration
+ges        : general disposition, see BPF entry GES
+ces        : disposition during recording , see BPF entry CES
+wea        : weather = SUN | RAIN
+irreg      : string containing the counts of 9 types of labeled irregularities
+             "i1|i2|i3|i4|i5|i6|i7|i8|i9"  with
+             i1 : sum of 'irregularities' in this recording (see section 
+                  'annotation' for a detailed definition of this count)
+             i2 : number of hesitations
+             i3 : number of pauses < 1sec
+             i4 : number of pauses > 1sec
+             i5 : number of prolonged/delayed phones
+             i6 : number of pronunciation errors
+             i7 : number of repetitions/stutter
+             i8 : number of repairs
+             i9 : number of interupted words, e.g. 'Haus_<"ah>_mann'
+anncom     : comment of annotators
+specom     : comment about the speaker (e.g. pathological)
+f0_uttlist : internal subset coding
+type       : speech type
+             R/E/M/D/L  = Read / Elicited / Monologue / Dialogue / List
+content    : speech content type
+             A/P/Q/N/R/C/S/T = Address / Picture / Question / Number / 
+                         Read Command / Spont. Command /
+                         Spelling / Tongue twister
+
+The second level contains the orthographic transcript and attached to 
+it a canonical pronunciation as in the BPF tiers ORT and KAN
+
+The third level contains the phonemic segments as in BPF tier MAU.
+
+------------- Interspeech 2011 Speaker State Challenge -----------------
+
+The ALC was used in the official Interspeech 2011 Speaker State Challenge
+organized by B. Schuller et al (see overview about the challenge in 
+DOC/PAPERS/INTERSPEECH2011SCHULLER.PDF; see summarized recognition results of 
+participants in DOC/IS2011CHALLENGE/RESULTS.PDF; 
+see individual studies in DOC/PAPERS/INTERSPEECH2011CHALLENGE).
+To mask the (hidden) test set from participants, the item numbers and 
+speaker IDs were scrambled for all data sets used in the challenge. Therefore
+the file naming in the challenge does not conform with the file naming 
+of the original corpus.
+Also, to simplify the task only a binary distinction between BAC>0.5permil 
+(class alcoholised) and BAC<0.5permil (class sober) were used; this 
+resulted in 154 speakers total, distributed into the speaker disjunctive 
+and gender balanced sets training (60), development (44) and test (50).
+
+To allow users of ALC to replicate the challenge, the original mapping lists
+and documentation files are stored in the subdir DOC/IS2011CHALLENGE
+See the README there for further details.
+
+--------------------------- Known Errors -------------------------------
+
+- Phonemic segmentation of dialogues
+  Since the dialogue recordings contain the voice of the speaker as well
+  as the voice of the interviewer, the MAUS segmentation (BPF tier MAU,
+  EMU files *.phonetic) for these recordings is not reliable. We are 
+  planning to re-furbish the MAUS program to cope with these crosstalk
+  problems in the future.
+- one address (prompt item 004) in the A set does not occur in the NA
+  set.
+
+Probably plenty more; please report bugs to bas@bas.uni-muenchen.de.
+
+----------------------------- History ----------------------------------
+
+10.11.2008 : First (internal) edition of ALC 1.0
+25.03.2009 : First official preliminary edition 1.1
+23.06.2009 : Second official preliminary edition 1.2 : 105 speakers (57f+48m)
+04.11.2010 : First complete edition 2.0 : 162 speakers (77f+85m)
+06.01.2011 : Edition 2.1 with manually corrected pronuciation dictionary
+             re-segmented phonemic MAUS segmentation (improved since
+             canonical transcripts are now error-free)
+01.09.2011 : Edition 2.2 with documentation of Interspeech 2011 Speaker
+             State Challenge
+04.06.2013 : Edition 2.3 : Emu database files added to CLARIN Repo version
+02.12.2014 : 2.4 : fixed mismatch in recordings 0182023014_h_00,
+             0811082002_h_00 :
+             in hlb and TextGrid a /9:/ was encoded in the segmentation of 
+             the word 'Coeur', while in par and phonetic a /9/ was encoded
+             (which is correct). Fixed hlb and TextGrid annotation file.
+20.07.2015 : 2.5 : added emuDB version with headset channel and without tracks
+             to /EMU/ALC_emuDB
+12.10.2016 : 2.6 : bug fix in emuDB : the attributes on the utterance level
+             were wrongly assigned (shuffled).
